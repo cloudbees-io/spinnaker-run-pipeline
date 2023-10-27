@@ -1,0 +1,36 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: action
+name: spinnaker deploy actions
+inputs:
+  url:  # id of input
+    description: 'spinnaker url'
+    required: true
+  token:  # id of input
+    description: 'token'
+    required: true
+  app-name:  # id of input
+    description: 'Application Name'
+    required: true
+  pipeline-name:  # id of input
+    description: 'pipelineName is optional when webhookUrl is present'
+    default: ''
+  webhook-url:  # id of input
+    description: 'webhookUrl is optional when pipelineName is present'
+    default: ''
+  parameters:  # id of input
+    description: 'parameters'
+    default: '{}'
+ 
+runs:
+  using: composite
+  steps:
+    - id: run-spinnaker-deploy-action
+      name: run-spinnaker-deploy-action
+      uses: docker://registry.saas-dev.beescloud.com/staging/spinnaker-actions:main-71df605ac66a0ff4e66f244b556e310a42f5f433
+      shell: sh
+      env:
+        CONFIG_JSON: '{"host":"","port":"","action":"","metaInfo":{"url":"${{ inputs.url }}","toolType":"SPINNAKER","username":"","password":"${{ inputs.token }}","reponame":"${{ inputs.app-name }}","jobName":"${{ inputs.pipeline-name }}","artifactPath":"${{ inputs.webhook-url }}","parameters":${{ inputs.parameters }},"envVariables":{},"pipelineInfo":{}}}'
+      run: |
+        set -x
+        cd /app
+        ./spinnaker_actions_app invoke -d $CONFIG_JSON

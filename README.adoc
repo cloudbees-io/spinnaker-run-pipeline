@@ -1,0 +1,75 @@
+= CloudBees action: Deploy with Spinnaker
+
+Use this action to deploy your application with Spinnaker, an open-source, multi-cloud continuous delivery platform.
+
+== Inputs
+
+[cols="2a,1a,3a,3a",options="header"]
+.Input details
+|===
+
+| Input name
+| Data type
+| Required?
+| Description
+
+| `url`
+| String
+| Yes
+| The Spinnaker server URL.
+
+| `token`
+| String
+| Yes
+| The Spinnaker token.
+
+| `app-name`
+| String
+| Yes
+| The application name in Spinnaker.
+
+| `pipeline-name`
+| String
+| Required only if `webhook-url` not specified.
+| The Spinnaker pipeline name for the requested application.
+
+| `webhook-url`
+| String
+| Required only if `pipeline-name` not specified.
+| The Spinnaker webhook URL for the requested application.
+
+| `parameters`
+| JSON
+| No
+| Any additional parameters, formatted as JSON data in key/value pairs.
+
+|===
+
+
+== Usage example
+
+In your YAML file, add:
+
+[source,yaml]
+----
+      - name: Deploy with Spinnaker
+        uses: cloudbees.io/spinnaker-run-pipeline@v1
+        with:
+          url: ${{ SPINNAKER_URL }}
+          token: ${{ secrets.SPINNAKER_TOKEN }}
+          app-name: my_application
+          pipeline-name: new_deploy
+          webhook-url: https://my-webhook-example.net
+          parameters: '{}'
+
+----
+
+== License
+
+This code is made available under the 
+link:https://opensource.org/license/mit/[MIT license].
+
+== References
+
+* Learn more about link:https://docs.cloudbees.com/docs/cloudbees-saas-platform-actions/latest/[using actions in CloudBees workflows].
+* Learn about link:https://docs.cloudbees.com/docs/cloudbees-saas-platform/latest/[the CloudBees platform].
