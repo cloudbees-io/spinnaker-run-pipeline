@@ -53,7 +53,7 @@ In your YAML file, add:
 [source,yaml]
 ----
       - name: Deploy with Spinnaker
-        uses: cloudbees.io/spinnaker-run-pipeline@v1
+        uses: cloudbees-io/spinnaker-run-pipeline@v1
         with:
           url: ${{ SPINNAKER_URL }}
           token: ${{ secrets.SPINNAKER_TOKEN }}
