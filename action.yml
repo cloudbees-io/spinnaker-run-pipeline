@@ -26,7 +26,7 @@ runs:
   steps:
     - id: run-spinnaker-deploy-action
       name: run-spinnaker-deploy-action
-      uses: docker://registry.saas-dev.beescloud.com/staging/spinnaker-actions:main-71df605ac66a0ff4e66f244b556e310a42f5f433
+      uses: docker://public.ecr.aws/l7o7z1g8/actions/spinnaker-actions:main-71df605ac66a0ff4e66f244b556e310a42f5f433
       shell: sh
       env:
         CONFIG_JSON: '{"host":"","port":"","action":"","metaInfo":{"url":"${{ inputs.url }}","toolType":"SPINNAKER","username":"","password":"${{ inputs.token }}","reponame":"${{ inputs.app-name }}","jobName":"${{ inputs.pipeline-name }}","artifactPath":"${{ inputs.webhook-url }}","parameters":${{ inputs.parameters }},"envVariables":{},"pipelineInfo":{}}}'
