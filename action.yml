@@ -7,7 +7,7 @@ inputs:
     required: true
   token:  # id of input
     description: 'token'
-    required: true
+    required: false
   app-name:  # id of input
     description: 'Application Name'
     required: true
