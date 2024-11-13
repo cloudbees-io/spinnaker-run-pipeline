@@ -26,7 +26,7 @@ runs:
   steps:
     - id: run-spinnaker-deploy-action
       name: run-spinnaker-deploy-action
-      uses: docker://public.ecr.aws/l7o7z1g8/actions/spinnaker-actions:main-94e48bbed0ef2a4f07611d9e8b58fffb6109075a
+      uses: docker://public.ecr.aws/l7o7z1g8/actions/spinnaker-actions:main-186e990c2d0e8aa635782b5e1949145e911e2d06
       shell: sh
       env:
         CONFIG_JSON: '{"host":"","port":"","action":"","metaInfo":{"url":"${{ inputs.url }}","toolType":"SPINNAKER","username":"","password":"${{ inputs.token }}","reponame":"${{ inputs.app-name }}","jobName":"${{ inputs.pipeline-name }}","artifactPath":"${{ inputs.webhook-url }}","parameters":${{ inputs.parameters }},"envVariables":{},"pipelineInfo":{}}}'
